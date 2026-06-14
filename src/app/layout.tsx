@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Muniba Amjad | Web Developer + Bookkeeper",
-  description: "I build professional websites and set up your bookkeeping — delivered together in 7 days.",
+  title: "Muniba Amjad",
+  description: "ACCA Candidate | QuickBooks ProAdvisor | Power BI Certified | Next.js Developer. Accountant by training. Developer by passion.",
 };
 
 export default function RootLayout({
