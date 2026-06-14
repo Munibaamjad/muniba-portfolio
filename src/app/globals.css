@@ -1,2 +1,13 @@
 @import "tailwindcss";
 html { scroll-behavior: smooth; }
+
+:root {
+  --green-deep: #0d2818;
+  --green-mid: #1a3d2b;
+  --green-accent: #2d6a4f;
+  --green-bright: #40916c;
+  --green-light: #74c69d;
+  --cream: #f5f0e8;
+  --cream-muted: #e8e0d0;
+  --cream-dim: #c4b99a;
+}
