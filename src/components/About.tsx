@@ -21,11 +21,9 @@ function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
 }
 
 const timeline = [
-  { year: "2020", label: "Started ACCA", icon: "🎓", detail: "Enrolled, chose finance with no idea what was ahead." },
-  { year: "2021", label: "First Freelance Client", icon: "💼", detail: "Bookkeeping from home. Paid. Actual work." },
-  { year: "2022", label: "Started Learning Web Dev", icon: "💻", detail: "Was frustrated during exam prep. Built something instead." },
-  { year: "2023", label: "First Remote Client (Qatar)", icon: "🌐", detail: "QuickBooks + financial reporting. Real business, real pressure." },
-  { year: "2024", label: "Power BI Certified", icon: "📊", detail: "Microsoft cert. Finance data, properly visualized." },
+  { year: "2023", label: "Started Learning Web Dev", icon: "💻", detail: "Picked it up on my own. Then turned it into actual work." },
+  { year: "2024", label: "Started ACCA + Web Freelancing", icon: "🎓", detail: "Enrolled in ACCA and landed first web development clients the same year." },
+  { year: "2025", label: "ACCA Bookkeeping Clients + Power BI", icon: "📊", detail: "Started finance freelancing alongside ACCA. Got Microsoft Power BI certified." },
   { year: "Sep '26", label: "SBR + SBL Passed", icon: "✅", detail: "The hardest ACCA papers. Done." },
 ];
 

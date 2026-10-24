@@ -29,9 +29,8 @@ function Bar({ name, level, accent, delay }: { name: string; level: number; acce
   const inView = useInView(ref, { once: true });
   return (
     <div ref={ref} className="mb-4">
-      <div className="flex justify-between items-center mb-1.5">
+      <div className="flex items-center mb-1.5">
         <span className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.6)" }}>{name}</span>
-        <span className="text-xs font-bold" style={{ color: accent }}>{level}%</span>
       </div>
       <div className="h-1.5 rounded-full" style={{ background: "rgba(255,255,255,0.07)" }}>
         <motion.div

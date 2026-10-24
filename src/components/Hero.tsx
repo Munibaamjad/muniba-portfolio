@@ -80,8 +80,8 @@ export default function Hero() {
 
   return (
     <>
+      <style>{`* { cursor: none !important; }`}</style>
       <CustomCursor />
-
       <section className="relative min-h-screen overflow-hidden" style={{ background: "#060b14" }}>
 
         {/* Subtle grid */}
@@ -254,9 +254,9 @@ export default function Hero() {
               <div className="space-y-3 mb-6">
                 {[
                   { num: "10/13", label: "ACCA Papers" },
-                  { num: "Sep '26", label: "SBR + SBL Passed" },
                   { num: "3+", label: "Years Freelancing" },
                   { num: "Power BI", label: "Microsoft Certified" },
+                  { num: "4", label: "Live Projects" },
                 ].map((s, i) => (
                   <motion.div
                     key={s.label}
