@@ -2,76 +2,92 @@
 import { motion } from "framer-motion";
 
 const finance = [
-  {name:"Financial Reporting (IFRS)", level:88},
-  {name:"Audit & Assurance", level:82},
-  {name:"Financial Management", level:80},
-  {name:"Management Accounting", level:85},
-  {name:"QuickBooks Online (QBO)", level:92},
-  {name:"Bank Reconciliation", level:90},
-  {name:"Variance Analysis", level:84},
-  {name:"Taxation (UK)", level:78},
+  "Financial Reporting (IFRS)", "Audit & Assurance", "Financial Management",
+  "Management Accounting", "QuickBooks Online (QBO)", "Bank Reconciliation",
+  "Variance Analysis", "Taxation (UK)",
 ];
 
 const tech = [
-  {name:"Next.js / React", level:88},
-  {name:"TypeScript", level:80},
-  {name:"Tailwind CSS", level:90},
-  {name:"Power BI + DAX", level:85},
-  {name:"Microsoft Excel (Advanced)", level:88},
-  {name:"Supabase / Databases", level:75},
-  {name:"Git / GitHub / Vercel", level:85},
-  {name:"AI Integration (Mistral, Gemini)", level:78},
+  "Next.js / React", "TypeScript", "Tailwind CSS", "Power BI + DAX",
+  "Microsoft Excel (Advanced)", "Supabase / Databases", "Git / GitHub / Vercel",
+  "AI Integration (Mistral, Gemini)",
 ];
 
-function Bar({name, level, isFinance}: {name:string; level:number; isFinance:boolean}) {
+function Tag({ name, accent }: { name: string; accent?: boolean }) {
   return (
-    <motion.div initial={{opacity:0}} whileInView={{opacity:1}} viewport={{once:true}} transition={{duration:0.4}}>
-      <div className="flex justify-between mb-1.5">
-        <span className="text-sm" style={{color:"#c4b99a"}}>{name}</span>
-        <span className="text-xs font-medium" style={{color: isFinance ? "#74c69d" : "#c4b99a"}}>{level}%</span>
-      </div>
-      <div className="h-1.5 rounded-full overflow-hidden" style={{background:"#1a3d2b"}}>
-        <motion.div
-          initial={{width:0}}
-          whileInView={{width:`${level}%`}}
-          viewport={{once:true}}
-          transition={{duration:0.9, ease:"easeOut"}}
-          className="h-full rounded-full"
-          style={{background: isFinance ? "linear-gradient(to right, #2d6a4f, #74c69d)" : "linear-gradient(to right, #40916c, #c4b99a)"}}
-        />
-      </div>
-    </motion.div>
+    <motion.span
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ scale: 1.06, y: -2, transition: { duration: 0.15 } }}
+      className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium cursor-default select-none"
+      style={accent
+        ? { background: "#1a274412", border: "1.5px solid #1a274430", color: "#1a2744" }
+        : { background: "#3b82f610", border: "1.5px solid #3b82f630", color: "#2563eb" }
+      }
+    >
+      {name}
+    </motion.span>
   );
 }
 
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.05 } },
+};
+
 export default function Skills() {
   return (
-    <section id="skills" className="py-32 px-6" style={{background:"#0a1f12"}}>
-      <div className="max-w-6xl mx-auto">
-        <motion.div initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.6}} className="text-center mb-20">
-          <p className="text-xs font-semibold tracking-widest uppercase mb-4" style={{color:"#74c69d"}}>Expertise</p>
-          <h2 className="text-4xl font-bold mb-4" style={{color:"#f5f0e8"}}>Skills</h2>
-          <p className="text-lg max-w-lg mx-auto" style={{color:"#6b7c6e"}}>Two disciplines. One person. No compromise.</p>
+    <section id="skills" className="py-32 px-6" style={{ background: "#f3f1ed" }}>
+      <div className="max-w-5xl mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-16"
+        >
+          <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: "#3b82f6" }}>What I Know</p>
+          <h2 className="text-4xl font-black mb-3" style={{ color: "#111827" }}>Skills</h2>
+          <p className="text-lg" style={{ color: "#6b7280" }}>Finance, accounting, and technology — combined.</p>
         </motion.div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <motion.div initial={{opacity:0,x:-20}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.6}}>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-9 h-9 rounded-xl flex items-center justify-center text-lg" style={{background:"rgba(116,198,157,0.1)"}}>📊</div>
-              <h3 className="text-xl font-bold" style={{color:"#f5f0e8"}}>Finance & Accounting</h3>
-            </div>
-            <div className="space-y-5">
-              {finance.map(s => <Bar key={s.name} name={s.name} level={s.level} isFinance={true}/>)}
-            </div>
-          </motion.div>
-          <motion.div initial={{opacity:0,x:20}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.6}}>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-9 h-9 rounded-xl flex items-center justify-center text-lg" style={{background:"rgba(196,185,154,0.1)"}}>💻</div>
-              <h3 className="text-xl font-bold" style={{color:"#f5f0e8"}}>Technology & Data</h3>
-            </div>
-            <div className="space-y-5">
-              {tech.map(s => <Bar key={s.name} name={s.name} level={s.level} isFinance={false}/>)}
-            </div>
-          </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {/* Finance */}
+          <div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-xs font-bold tracking-widest uppercase mb-5"
+              style={{ color: "#9ca3af" }}
+            >
+              Finance & Accounting
+            </motion.p>
+            <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex flex-wrap gap-2.5">
+              {finance.map(n => <Tag key={n} name={n} accent />)}
+            </motion.div>
+          </div>
+
+          {/* Tech */}
+          <div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-xs font-bold tracking-widest uppercase mb-5"
+              style={{ color: "#9ca3af" }}
+            >
+              Technology & Data
+            </motion.p>
+            <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex flex-wrap gap-2.5">
+              {tech.map(n => <Tag key={n} name={n} />)}
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
