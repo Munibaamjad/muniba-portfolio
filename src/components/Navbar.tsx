@@ -1,104 +1,115 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-const links = ["About", "Skills", "Experience", "Credentials", "Projects", "Contact"];
+const navLinks = ["About", "Skills", "Projects", "Experience", "Contact"];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
+    const handler = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handler);
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
   return (
     <motion.nav
-      initial={{ y: -60, opacity: 0 }}
+      initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 px-6 py-4 transition-all duration-300"
+      transition={{ duration: 0.5, delay: 0.1 }}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
-        background: scrolled ? "rgba(250,248,245,0.85)" : "transparent",
+        background: scrolled ? "rgba(250,248,245,0.92)" : "transparent",
         backdropFilter: scrolled ? "blur(16px)" : "none",
-        borderBottom: scrolled ? "1px solid #e5e0d8" : "none",
+        borderBottom: scrolled ? "1px solid rgba(200,191,181,0.4)" : "none",
       }}
     >
-      <div className="max-w-5xl mx-auto flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-8 py-4 flex items-center justify-between">
         {/* Logo */}
-        <motion.a
-          href="#"
-          className="text-lg font-black tracking-tight"
-          style={{ color: "#111827" }}
-          whileHover={{ scale: 1.05 }}
-        >
-          M<span style={{ color: "#3b82f6" }}>.</span>
-        </motion.a>
+        <a href="#" className="flex items-center gap-1.5 group">
+          <span className="text-xl font-black" style={{ color: "#111827" }}>M</span>
+          <motion.span
+            animate={{ opacity: [1, 0.5, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="w-1.5 h-1.5 rounded-full block"
+            style={{ background: "#3b82f6" }}
+          />
+        </a>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-1">
-          {links.map((link, i) => (
-            <motion.a
+        <div className="hidden md:flex items-center gap-8">
+          {navLinks.map(link => (
+            <a
               key={link}
               href={`#${link.toLowerCase()}`}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + i * 0.05 }}
-              className="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200"
-              style={{ color: "#374151" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#111827"; (e.currentTarget as HTMLElement).style.background = "#1a274410"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "#374151"; (e.currentTarget as HTMLElement).style.background = "transparent"; }}
+              className="text-sm font-medium transition-colors duration-200"
+              style={{ color: "#6b7280" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#111827")}
+              onMouseLeave={e => (e.currentTarget.style.color = "#6b7280")}
             >
               {link}
-            </motion.a>
+            </a>
           ))}
           <motion.a
             href="#contact"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            whileHover={{ scale: 1.05 }}
-            className="ml-2 px-5 py-2 rounded-full text-sm font-semibold"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            className="px-5 py-2 rounded-full text-sm font-semibold"
             style={{ background: "#1a2744", color: "#fff" }}
           >
             Hire Me
           </motion.a>
         </div>
 
-        {/* Mobile menu toggle */}
+        {/* Mobile hamburger */}
         <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden flex flex-col gap-1.5 p-1"
+          onClick={() => setMenuOpen(o => !o)}
+          aria-label="Menu"
         >
-          <motion.span animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 7 : 0 }} className="block w-5 h-0.5" style={{ background: "#111827" }} />
-          <motion.span animate={{ opacity: menuOpen ? 0 : 1 }} className="block w-5 h-0.5" style={{ background: "#111827" }} />
-          <motion.span animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -7 : 0 }} className="block w-5 h-0.5" style={{ background: "#111827" }} />
+          {[0, 1, 2].map(i => (
+            <motion.span
+              key={i}
+              className="block h-0.5 rounded"
+              style={{ width: i === 1 ? 16 : 22, background: "#111827" }}
+              animate={menuOpen ? { opacity: i === 1 ? 0 : 1, rotate: i === 0 ? 45 : i === 2 ? -45 : 0, y: i === 0 ? 8 : i === 2 ? -8 : 0 } : { opacity: 1, rotate: 0, y: 0 }}
+              transition={{ duration: 0.2 }}
+            />
+          ))}
         </button>
       </div>
 
       {/* Mobile menu */}
-      {menuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden mt-4 pb-4 rounded-2xl p-4"
-          style={{ background: "#fff", border: "1px solid #e5e0d8" }}
-        >
-          {links.map(link => (
+      <motion.div
+        initial={false}
+        animate={menuOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+        className="md:hidden overflow-hidden"
+        style={{ background: "rgba(250,248,245,0.98)", borderTop: "1px solid #e5e0d8" }}
+      >
+        <div className="px-8 py-4 flex flex-col gap-4">
+          {navLinks.map(link => (
             <a
               key={link}
               href={`#${link.toLowerCase()}`}
-              onClick={() => setMenuOpen(false)}
-              className="block px-4 py-3 text-sm font-medium rounded-lg"
+              className="text-sm font-medium py-1"
               style={{ color: "#374151" }}
+              onClick={() => setMenuOpen(false)}
             >
               {link}
             </a>
           ))}
-        </motion.div>
-      )}
+          <a
+            href="#contact"
+            className="text-sm font-semibold px-5 py-2.5 rounded-full text-center"
+            style={{ background: "#1a2744", color: "#fff" }}
+            onClick={() => setMenuOpen(false)}
+          >
+            Hire Me
+          </a>
+        </div>
+      </motion.div>
     </motion.nav>
   );
 }
