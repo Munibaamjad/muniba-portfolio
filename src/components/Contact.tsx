@@ -23,10 +23,10 @@ export default function Contact() {
     } catch { setStatus("error"); }
   };
 
-  const inputBase = {
-    background: "#fff",
-    border: "1.5px solid #e5e0d8",
-    color: "#111827",
+  const inputBase: React.CSSProperties = {
+    background: "rgba(255,255,255,0.04)",
+    border: "1.5px solid rgba(255,255,255,0.09)",
+    color: "#ffffff",
     borderRadius: "12px",
     outline: "none",
     width: "100%",
@@ -35,11 +35,21 @@ export default function Contact() {
     transition: "border-color 0.2s",
   };
 
-  const focusStyle = { borderColor: "#3b82f6" };
+  const focusStyle = { borderColor: "#63b3ff" };
 
   return (
-    <section id="contact" className="py-32 px-6" style={{ background: "#faf8f5" }}>
-      <div className="max-w-5xl mx-auto">
+    <section id="contact" className="py-32 px-6 relative overflow-hidden" style={{ background: "#080d18" }}>
+      {/* Grid */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        backgroundImage: "linear-gradient(rgba(99,179,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(99,179,255,0.025) 1px, transparent 1px)",
+        backgroundSize: "60px 60px",
+      }} />
+      {/* Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(ellipse, rgba(59,130,246,0.06) 0%, transparent 70%)" }}
+      />
+
+      <div className="max-w-5xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -47,10 +57,10 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: "#3b82f6" }}>Say Hello</p>
-          <h2 className="text-4xl font-black mb-4" style={{ color: "#111827" }}>Let's Talk</h2>
-          <p className="text-lg max-w-lg mx-auto" style={{ color: "#6b7280" }}>
-            Whether it's a project, internship, job, or just a conversation — I'd love to hear from you.
+          <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: "#63b3ff" }}>Say Hello</p>
+          <h2 className="text-4xl font-black mb-4" style={{ color: "#ffffff" }}>Let&apos;s Talk</h2>
+          <p className="text-lg max-w-lg mx-auto" style={{ color: "rgba(255,255,255,0.35)" }}>
+            Whether it&apos;s a project, internship, job, or just a conversation — I&apos;d love to hear from you.
           </p>
         </motion.div>
 
@@ -64,23 +74,23 @@ export default function Contact() {
             className="lg:col-span-2 space-y-5 flex flex-col justify-center"
           >
             {[
-              { icon: <Mail size={18} />, label: "Email", value: "muniba.offcial@gmail.com" },
-              { icon: <MessageCircle size={18} />, label: "WhatsApp", value: "+92 314 786 9932" },
-              { icon: <MapPin size={18} />, label: "Location", value: "Karachi, Pakistan · Remote" },
+              { icon: <Mail size={18} />, label: "Email", value: "muniba.offcial@gmail.com", color: "#63b3ff" },
+              { icon: <MessageCircle size={18} />, label: "WhatsApp", value: "+92 314 786 9932", color: "#34d399" },
+              { icon: <MapPin size={18} />, label: "Location", value: "Karachi, Pakistan · Remote", color: "#a78bfa" },
             ].map(c => (
               <div key={c.label} className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center"
-                  style={{ background: "#1a274410", border: "1px solid #1a274420", color: "#1a2744" }}>
+                  style={{ background: `${c.color}12`, border: `1px solid ${c.color}25`, color: c.color }}>
                   {c.icon}
                 </div>
                 <div>
-                  <p className="text-sm font-semibold" style={{ color: "#111827" }}>{c.label}</p>
-                  <p className="text-sm" style={{ color: "#6b7280" }}>{c.value}</p>
+                  <p className="text-sm font-semibold" style={{ color: "#ffffff" }}>{c.label}</p>
+                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>{c.value}</p>
                 </div>
               </div>
             ))}
-            <div className="pt-4" style={{ borderTop: "1px solid #e5e0d8" }}>
-              <p className="text-sm leading-relaxed" style={{ color: "#6b7280" }}>
+            <div className="pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>
                 Open to audit trainee, finance analyst, and data analyst roles in Karachi or remote. Also available for freelance web development and bookkeeping worldwide.
               </p>
             </div>
@@ -93,37 +103,39 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="lg:col-span-3 rounded-2xl p-8"
-            style={{ background: "#fff", border: "1px solid #e5e0d8" }}
+            style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
           >
             <div className="flex flex-col gap-4">
               <input
                 suppressHydrationWarning
                 type="text" name="name" value={form.name} onChange={handleChange}
-                placeholder="Your name" style={inputBase}
+                placeholder="Your name"
+                style={{ ...inputBase }}
                 onFocus={e => Object.assign(e.target.style, focusStyle)}
-                onBlur={e => { e.target.style.borderColor = "#e5e0d8"; }}
+                onBlur={e => { e.target.style.borderColor = "rgba(255,255,255,0.09)"; }}
               />
               <input
                 suppressHydrationWarning
                 type="email" name="email" value={form.email} onChange={handleChange}
-                placeholder="Your email" style={inputBase}
+                placeholder="Your email"
+                style={{ ...inputBase }}
                 onFocus={e => Object.assign(e.target.style, focusStyle)}
-                onBlur={e => { e.target.style.borderColor = "#e5e0d8"; }}
+                onBlur={e => { e.target.style.borderColor = "rgba(255,255,255,0.09)"; }}
               />
               <select
                 suppressHydrationWarning
                 name="type" value={form.type} onChange={handleChange}
-                style={{ ...inputBase, color: form.type ? "#111827" : "#9ca3af" }}
+                style={{ ...inputBase, color: form.type ? "#ffffff" : "rgba(255,255,255,0.35)" }}
                 onFocus={e => Object.assign(e.target.style, focusStyle)}
-                onBlur={e => { e.target.style.borderColor = "#e5e0d8"; }}
+                onBlur={e => { e.target.style.borderColor = "rgba(255,255,255,0.09)"; }}
               >
-                <option value="">I'm reaching out about...</option>
-                <option>Freelance project (website)</option>
-                <option>Freelance project (bookkeeping)</option>
-                <option>Internship opportunity</option>
-                <option>Job opportunity</option>
-                <option>Collaboration</option>
-                <option>Something else</option>
+                <option value="" style={{ background: "#0d1525" }}>I&apos;m reaching out about...</option>
+                <option style={{ background: "#0d1525" }}>Freelance project (website)</option>
+                <option style={{ background: "#0d1525" }}>Freelance project (bookkeeping)</option>
+                <option style={{ background: "#0d1525" }}>Internship opportunity</option>
+                <option style={{ background: "#0d1525" }}>Job opportunity</option>
+                <option style={{ background: "#0d1525" }}>Collaboration</option>
+                <option style={{ background: "#0d1525" }}>Something else</option>
               </select>
               <textarea
                 suppressHydrationWarning
@@ -131,7 +143,7 @@ export default function Contact() {
                 placeholder="Tell me more..." rows={5}
                 style={{ ...inputBase, resize: "none" }}
                 onFocus={e => Object.assign(e.target.style, focusStyle)}
-                onBlur={e => { e.target.style.borderColor = "#e5e0d8"; }}
+                onBlur={e => { e.target.style.borderColor = "rgba(255,255,255,0.09)"; }}
               />
               <motion.button
                 onClick={handleSubmit}
@@ -139,7 +151,7 @@ export default function Contact() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="py-4 rounded-xl text-sm font-bold disabled:opacity-50 transition-all duration-200"
-                style={{ background: "#1a2744", color: "#fff" }}
+                style={{ background: "#3b82f6", color: "#fff", boxShadow: "0 4px 20px rgba(59,130,246,0.3)" }}
               >
                 {status === "idle" && "Send Message"}
                 {status === "sending" && "Sending..."}

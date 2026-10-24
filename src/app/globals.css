@@ -2,24 +2,29 @@
 html { scroll-behavior: smooth; }
 
 :root {
-  --bg: #faf8f5;
-  --bg-card: #ffffff;
-  --bg-subtle: #f3f1ed;
+  --bg: #060b14;
+  --bg-card: #0d1525;
+  --bg-subtle: #080d18;
   --navy: #1a2744;
-  --navy-mid: #2d3f6b;
   --blue: #3b82f6;
-  --blue-light: #93c5fd;
-  --text: #111827;
-  --text-mid: #374151;
-  --text-muted: #6b7280;
-  --border: #e5e0d8;
-  --border-dark: #d1c9bc;
+  --blue-light: #63b3ff;
+  --purple: #a78bfa;
+  --green: #34d399;
+  --text: #ffffff;
+  --text-mid: rgba(255,255,255,0.65);
+  --text-muted: rgba(255,255,255,0.35);
+  --border: rgba(255,255,255,0.08);
 }
 
-::selection { background: #3b82f620; }
+::selection { background: rgba(99,179,255,0.25); color: #fff; }
 
 body {
   background: var(--bg);
   color: var(--text);
   font-family: system-ui, -apple-system, sans-serif;
 }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #060b14; }
+::-webkit-scrollbar-thumb { background: rgba(99,179,255,0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(99,179,255,0.35); }
