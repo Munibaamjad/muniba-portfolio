@@ -147,7 +147,7 @@ export default function About() {
               className="text-base md:text-lg leading-relaxed"
               style={{ color: "rgba(255,255,255,0.55)" }}
             >
-              Now I&apos;m 10 papers through ACCA, SBR and SBL done as of September 2026, and still building. The finance brain and the developer habit ended up being the same thing: I look at broken systems and I fix them.
+              Now I&apos;m 10 papers through ACCA and still building. The finance brain and the developer habit ended up being the same thing: I look at broken systems and I fix them.
             </motion.p>
           </div>
 
@@ -159,8 +159,8 @@ export default function About() {
               {[
                 { n: 10, suffix: "/13", label: "ACCA Papers", sub: "3 remaining" },
                 { n: 3, suffix: "+", label: "Years Freelance", sub: "Remote clients" },
-                { n: 2, suffix: "", label: "SBL + SBR", sub: "Passed Sep 2026" },
                 { n: 4, suffix: "", label: "Live Projects", sub: "Built from scratch" },
+                { n: 2, suffix: "", label: "Certifications", sub: "QuickBooks · Power BI" },
               ].map((s, i) => (
                 <motion.div
                   key={s.label}

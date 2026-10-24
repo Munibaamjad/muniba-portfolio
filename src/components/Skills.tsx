@@ -119,7 +119,7 @@ export default function Skills() {
                 <Bar key={s.name} name={s.name} level={s.level} accent="#63b3ff" delay={0.08 * i} />
               ))}
               <p className="text-xs mt-5 leading-relaxed" style={{ color: "rgba(255,255,255,0.25)" }}>
-                ACCA 10/13 · SBR + SBL passed Sep 2026 · QuickBooks ProAdvisor · Freelancing since 2021
+                ACCA 10/13 · QuickBooks ProAdvisor · Freelancing since 2021
               </p>
             </div>
           </motion.div>
@@ -147,7 +147,7 @@ export default function Skills() {
                 <Bar key={s.name} name={s.name} level={s.level} accent="#a78bfa" delay={0.08 * i} />
               ))}
               <p className="text-xs mt-5 leading-relaxed" style={{ color: "rgba(255,255,255,0.25)" }}>
-                Microsoft Power BI Certified · Built ExaminerAI + 3 live projects · Freelance dev since 2022
+                Microsoft Power BI Certified · Built ExaminerAI + 3 live projects
               </p>
             </div>
           </motion.div>
